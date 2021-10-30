@@ -37,6 +37,7 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../ADC.c \
 ../Dio.c \
 ../ISRs.c \
 ../KeyPad.c \
@@ -55,6 +56,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+ADC.o \
 Dio.o \
 ISRs.o \
 KeyPad.o \
@@ -66,6 +68,7 @@ SevenSegement.o \
 StringHandler.o
 
 OBJS_AS_ARGS +=  \
+ADC.o \
 Dio.o \
 ISRs.o \
 KeyPad.o \
@@ -77,6 +80,7 @@ SevenSegement.o \
 StringHandler.o
 
 C_DEPS +=  \
+ADC.d \
 Dio.d \
 ISRs.d \
 KeyPad.d \
@@ -88,6 +92,7 @@ SevenSegement.d \
 StringHandler.d
 
 C_DEPS_AS_ARGS +=  \
+ADC.d \
 Dio.d \
 ISRs.d \
 KeyPad.d \
@@ -112,6 +117,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
