@@ -13,7 +13,8 @@ ReturnValueType HEX2String (uint8 HEX,uint8 string[3])
 	String = "2F"
 	*/
 	string[2] = 0 ;
-	if (HEX & 0x0F > 9)
+	uint8 Nibble = HEX ;
+	if ((HEX & 0x0F) > 9)
 	{
 		string[1] =(HEX & 0x0F) - 0x0A + 'A' ;
 	}
@@ -23,11 +24,11 @@ ReturnValueType HEX2String (uint8 HEX,uint8 string[3])
 	}
 	if ((HEX >> 4) > 9)
 	{
-		string[0] =(HEX & 0x0F) - 0x0A + 'A' ;
+		string[0] =(HEX>>4 & 0x0F) - 0x0A + 'A' ;
 	}
 	else
 	{
-		string[0] =(HEX & 0x0F) + '0' ;
+		string[0] =(HEX>>4 & 0x0F) + 0x30 ;
 	}
 	
 	return OK;
