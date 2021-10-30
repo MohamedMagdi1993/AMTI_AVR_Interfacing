@@ -10,24 +10,32 @@
 #include <avr/interrupt.h>
 #include "Dio.h"
 #include "Bitwise.h"
+#include "LED.h"
+
+volatile uint8 SecondsCounter = 0;
+
 int main(void)
 {
-	Dio_PortSetDirection(D,0xFF) ; // PORT D is output
-	Dio_PortWrite(D,0x00); // Turn all Leds off 
-	TCNT0 = 0x00 ;
+	 LED_Init();
+//SetBit(DDRC,2);
+//	Dio_PortSetDirection(D,0xFF) ; // PORT D is output
+//	Dio_PortWrite(D,0x00); // Turn all Leds off 
+	TCNT0 = 128 ;
 	ClearBit(TCCR0,WGM00); ClearBit(TCCR0,WGM01) ; // NormalMode
 	SetBit(TCCR0,CS00) ; ClearBit(TCCR0,CS01) ; SetBit(TCCR0,CS02) ;
 	SetBit(TIMSK,TOIE0);
 	sei();
 	while (1)
 	{
-		_delay_ms(10);
-	//	PORTD--;
+	if (SecondsCounter >= 61)
+	{
+		ToggleBit(PORTC,2);
+		SecondsCounter = 0;
+	}
 	}
 }
 
 ISR(TIMER0_OVF_vect)
 {
-	PORTD++;
-	 
+	SecondsCounter++;
 }
