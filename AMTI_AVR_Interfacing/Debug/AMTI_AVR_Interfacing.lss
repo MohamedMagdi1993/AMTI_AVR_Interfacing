@@ -3,38 +3,38 @@ AMTI_AVR_Interfacing.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000003c6  00000000  00000000  00000074  2**1
+  0 .text         00000288  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  00800060  0000043a  2**0
+  1 .data         00000000  00800060  00800060  000002fc  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000001  00800060  00800060  0000043a  2**0
+  2 .bss          00000001  00800060  00800060  000002fc  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000043a  2**0
+  3 .comment      00000030  00000000  00000000  000002fc  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000046c  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000032c  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000188  00000000  00000000  000004a8  2**0
+  5 .debug_aranges 00000188  00000000  00000000  00000368  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000011e8  00000000  00000000  00000630  2**0
+  6 .debug_info   0000114c  00000000  00000000  000004f0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000863  00000000  00000000  00001818  2**0
+  7 .debug_abbrev 0000084d  00000000  00000000  0000163c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001159  00000000  00000000  0000207b  2**0
+  8 .debug_line   0000112d  00000000  00000000  00001e89  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000002f4  00000000  00000000  000031d4  2**2
+  9 .debug_frame  000002f4  00000000  00000000  00002fb8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000070f  00000000  00000000  000034c8  2**0
+ 10 .debug_str    0000070f  00000000  00000000  000032ac  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000016a6  00000000  00000000  00003bd7  2**0
+ 11 .debug_loc    000016ee  00000000  00000000  000039bb  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000138  00000000  00000000  0000527d  2**0
+ 12 .debug_ranges 00000138  00000000  00000000  000050a9  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
-   4:	0c 94 53 01 	jmp	0x2a6	; 0x2a6 <__vector_1>
+   4:	0c 94 c8 00 	jmp	0x190	; 0x190 <__vector_1>
    8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
    c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
@@ -42,9 +42,9 @@ Disassembly of section .text:
   18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  24:	0c 94 bd 01 	jmp	0x37a	; 0x37a <__vector_9>
-  28:	0c 94 ae 01 	jmp	0x35c	; 0x35c <__vector_10>
-  2c:	0c 94 a4 01 	jmp	0x348	; 0x348 <__vector_11>
+  24:	0c 94 1e 01 	jmp	0x23c	; 0x23c <__vector_9>
+  28:	0c 94 0f 01 	jmp	0x21e	; 0x21e <__vector_10>
+  2c:	0c 94 05 01 	jmp	0x20a	; 0x20a <__vector_11>
   30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
@@ -76,19 +76,19 @@ Disassembly of section .text:
   6a:	a1 36       	cpi	r26, 0x61	; 97
   6c:	b2 07       	cpc	r27, r18
   6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
-  70:	0e 94 62 01 	call	0x2c4	; 0x2c4 <main>
-  74:	0c 94 e1 01 	jmp	0x3c2	; 0x3c2 <_exit>
+  70:	0e 94 d7 00 	call	0x1ae	; 0x1ae <main>
+  74:	0c 94 42 01 	jmp	0x284	; 0x284 <_exit>
 
 00000078 <__bad_interrupt>:
   78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 0000007c <Dio_PinSetDirection>:
-		ReturnValue = NOK ;
-		break;
-	}
-	asm	volatile ("nop"); 
 	return ReturnValue;
 }
+ReturnValueType Dio_PinSetDirection (PortType port , uint8 PinNumber,PinDirectionType PinDirection)
+{
+	ReturnValueType  ReturnValue = OK;
+	switch (port)
   7c:	81 30       	cpi	r24, 0x01	; 1
   7e:	31 f1       	breq	.+76     	; 0xcc <Dio_PinSetDirection+0x50>
   80:	38 f0       	brcs	.+14     	; 0x90 <Dio_PinSetDirection+0x14>
@@ -99,6 +99,9 @@ Disassembly of section .text:
   8a:	09 f4       	brne	.+2      	; 0x8e <Dio_PinSetDirection+0x12>
   8c:	5a c0       	rjmp	.+180    	; 0x142 <Dio_PinSetDirection+0xc6>
   8e:	76 c0       	rjmp	.+236    	; 0x17c <Dio_PinSetDirection+0x100>
+	{
+		case A:
+		if (PinDirection == PinInput) ClearBit(DDRA,PinNumber);
   90:	41 11       	cpse	r20, r1
   92:	0d c0       	rjmp	.+26     	; 0xae <Dio_PinSetDirection+0x32>
   94:	2a b3       	in	r18, 0x1a	; 26
@@ -112,8 +115,19 @@ Disassembly of section .text:
   a4:	80 95       	com	r24
   a6:	82 23       	and	r24, r18
   a8:	8a bb       	out	0x1a, r24	; 26
+	asm	volatile ("nop");  
+	return ReturnValue;
+}
+ReturnValueType Dio_PinSetDirection (PortType port , uint8 PinNumber,PinDirectionType PinDirection)
+{
+	ReturnValueType  ReturnValue = OK;
   aa:	81 e0       	ldi	r24, 0x01	; 1
   ac:	08 95       	ret
+	switch (port)
+	{
+		case A:
+		if (PinDirection == PinInput) ClearBit(DDRA,PinNumber);
+		else if (PinDirection == PinOutput) SetBit(DDRA,PinNumber);
   ae:	41 30       	cpi	r20, 0x01	; 1
   b0:	09 f0       	breq	.+2      	; 0xb4 <Dio_PinSetDirection+0x38>
   b2:	66 c0       	rjmp	.+204    	; 0x180 <Dio_PinSetDirection+0x104>
@@ -127,8 +141,20 @@ Disassembly of section .text:
   c2:	e2 f7       	brpl	.-8      	; 0xbc <Dio_PinSetDirection+0x40>
   c4:	82 2b       	or	r24, r18
   c6:	8a bb       	out	0x1a, r24	; 26
+	asm	volatile ("nop");  
+	return ReturnValue;
+}
+ReturnValueType Dio_PinSetDirection (PortType port , uint8 PinNumber,PinDirectionType PinDirection)
+{
+	ReturnValueType  ReturnValue = OK;
   c8:	81 e0       	ldi	r24, 0x01	; 1
   ca:	08 95       	ret
+		else if (PinDirection == PinOutput) SetBit(DDRA,PinNumber);
+		else ReturnValue = NOK ; 
+		
+		break;
+		case B:
+		if (PinDirection == PinInput) ClearBit(DDRB,PinNumber);
   cc:	41 11       	cpse	r20, r1
   ce:	0d c0       	rjmp	.+26     	; 0xea <Dio_PinSetDirection+0x6e>
   d0:	27 b3       	in	r18, 0x17	; 23
@@ -142,8 +168,20 @@ Disassembly of section .text:
   e0:	80 95       	com	r24
   e2:	82 23       	and	r24, r18
   e4:	87 bb       	out	0x17, r24	; 23
+	asm	volatile ("nop");  
+	return ReturnValue;
+}
+ReturnValueType Dio_PinSetDirection (PortType port , uint8 PinNumber,PinDirectionType PinDirection)
+{
+	ReturnValueType  ReturnValue = OK;
   e6:	81 e0       	ldi	r24, 0x01	; 1
   e8:	08 95       	ret
+		else ReturnValue = NOK ; 
+		
+		break;
+		case B:
+		if (PinDirection == PinInput) ClearBit(DDRB,PinNumber);
+		else if (PinDirection == PinOutput) SetBit(DDRB,PinNumber);
   ea:	41 30       	cpi	r20, 0x01	; 1
   ec:	09 f0       	breq	.+2      	; 0xf0 <Dio_PinSetDirection+0x74>
   ee:	4a c0       	rjmp	.+148    	; 0x184 <Dio_PinSetDirection+0x108>
@@ -157,8 +195,20 @@ Disassembly of section .text:
   fe:	e2 f7       	brpl	.-8      	; 0xf8 <Dio_PinSetDirection+0x7c>
  100:	82 2b       	or	r24, r18
  102:	87 bb       	out	0x17, r24	; 23
+	asm	volatile ("nop");  
+	return ReturnValue;
+}
+ReturnValueType Dio_PinSetDirection (PortType port , uint8 PinNumber,PinDirectionType PinDirection)
+{
+	ReturnValueType  ReturnValue = OK;
  104:	81 e0       	ldi	r24, 0x01	; 1
  106:	08 95       	ret
+		if (PinDirection == PinInput) ClearBit(DDRB,PinNumber);
+		else if (PinDirection == PinOutput) SetBit(DDRB,PinNumber);
+		else ReturnValue = NOK ;
+		break;
+		case C:
+		if (PinDirection == PinInput) ClearBit(DDRC,PinNumber);
  108:	41 11       	cpse	r20, r1
  10a:	0d c0       	rjmp	.+26     	; 0x126 <Dio_PinSetDirection+0xaa>
  10c:	24 b3       	in	r18, 0x14	; 20
@@ -172,8 +222,20 @@ Disassembly of section .text:
  11c:	80 95       	com	r24
  11e:	82 23       	and	r24, r18
  120:	84 bb       	out	0x14, r24	; 20
+	asm	volatile ("nop");  
+	return ReturnValue;
+}
+ReturnValueType Dio_PinSetDirection (PortType port , uint8 PinNumber,PinDirectionType PinDirection)
+{
+	ReturnValueType  ReturnValue = OK;
  122:	81 e0       	ldi	r24, 0x01	; 1
  124:	08 95       	ret
+		else if (PinDirection == PinOutput) SetBit(DDRB,PinNumber);
+		else ReturnValue = NOK ;
+		break;
+		case C:
+		if (PinDirection == PinInput) ClearBit(DDRC,PinNumber);
+		else if (PinDirection == PinOutput) SetBit(DDRC,PinNumber);
  126:	41 30       	cpi	r20, 0x01	; 1
  128:	79 f5       	brne	.+94     	; 0x188 <Dio_PinSetDirection+0x10c>
  12a:	24 b3       	in	r18, 0x14	; 20
@@ -186,8 +248,20 @@ Disassembly of section .text:
  138:	e2 f7       	brpl	.-8      	; 0x132 <Dio_PinSetDirection+0xb6>
  13a:	82 2b       	or	r24, r18
  13c:	84 bb       	out	0x14, r24	; 20
+	asm	volatile ("nop");  
+	return ReturnValue;
+}
+ReturnValueType Dio_PinSetDirection (PortType port , uint8 PinNumber,PinDirectionType PinDirection)
+{
+	ReturnValueType  ReturnValue = OK;
  13e:	81 e0       	ldi	r24, 0x01	; 1
  140:	08 95       	ret
+		if (PinDirection == PinInput) ClearBit(DDRC,PinNumber);
+		else if (PinDirection == PinOutput) SetBit(DDRC,PinNumber);
+		else ReturnValue = NOK ;
+		break;
+		case D:
+		if (PinDirection == PinInput) ClearBit(DDRD,PinNumber);
  142:	41 11       	cpse	r20, r1
  144:	0d c0       	rjmp	.+26     	; 0x160 <Dio_PinSetDirection+0xe4>
  146:	21 b3       	in	r18, 0x11	; 17
@@ -201,8 +275,20 @@ Disassembly of section .text:
  156:	80 95       	com	r24
  158:	82 23       	and	r24, r18
  15a:	81 bb       	out	0x11, r24	; 17
+	asm	volatile ("nop");  
+	return ReturnValue;
+}
+ReturnValueType Dio_PinSetDirection (PortType port , uint8 PinNumber,PinDirectionType PinDirection)
+{
+	ReturnValueType  ReturnValue = OK;
  15c:	81 e0       	ldi	r24, 0x01	; 1
  15e:	08 95       	ret
+		else if (PinDirection == PinOutput) SetBit(DDRC,PinNumber);
+		else ReturnValue = NOK ;
+		break;
+		case D:
+		if (PinDirection == PinInput) ClearBit(DDRD,PinNumber);
+		else if (PinDirection == PinOutput) SetBit(DDRD,PinNumber);
  160:	41 30       	cpi	r20, 0x01	; 1
  162:	a1 f4       	brne	.+40     	; 0x18c <Dio_PinSetDirection+0x110>
  164:	21 b3       	in	r18, 0x11	; 17
@@ -215,496 +301,243 @@ Disassembly of section .text:
  172:	e2 f7       	brpl	.-8      	; 0x16c <Dio_PinSetDirection+0xf0>
  174:	82 2b       	or	r24, r18
  176:	81 bb       	out	0x11, r24	; 17
+	asm	volatile ("nop");  
+	return ReturnValue;
+}
+ReturnValueType Dio_PinSetDirection (PortType port , uint8 PinNumber,PinDirectionType PinDirection)
+{
+	ReturnValueType  ReturnValue = OK;
  178:	81 e0       	ldi	r24, 0x01	; 1
  17a:	08 95       	ret
- 17c:	80 e0       	ldi	r24, 0x00	; 0
- 17e:	08 95       	ret
- 180:	80 e0       	ldi	r24, 0x00	; 0
- 182:	08 95       	ret
- 184:	80 e0       	ldi	r24, 0x00	; 0
- 186:	08 95       	ret
- 188:	80 e0       	ldi	r24, 0x00	; 0
- 18a:	08 95       	ret
- 18c:	80 e0       	ldi	r24, 0x00	; 0
- 18e:	08 95       	ret
-
-00000190 <Dio_PinWrite>:
-ReturnValueType Dio_PinWrite(PortType port,uint8 PinNumber ,PinStateType PinState )
-{
-	ReturnValueType  ReturnValue = OK;
-	switch (port)
- 190:	81 30       	cpi	r24, 0x01	; 1
- 192:	31 f1       	breq	.+76     	; 0x1e0 <Dio_PinWrite+0x50>
- 194:	38 f0       	brcs	.+14     	; 0x1a4 <Dio_PinWrite+0x14>
- 196:	82 30       	cpi	r24, 0x02	; 2
- 198:	09 f4       	brne	.+2      	; 0x19c <Dio_PinWrite+0xc>
- 19a:	40 c0       	rjmp	.+128    	; 0x21c <Dio_PinWrite+0x8c>
- 19c:	83 30       	cpi	r24, 0x03	; 3
- 19e:	09 f4       	brne	.+2      	; 0x1a2 <Dio_PinWrite+0x12>
- 1a0:	5a c0       	rjmp	.+180    	; 0x256 <Dio_PinWrite+0xc6>
- 1a2:	76 c0       	rjmp	.+236    	; 0x290 <Dio_PinWrite+0x100>
-	{
-		case A:
-		if (PinState == PinLow) ClearBit(PORTA,PinNumber);
- 1a4:	41 11       	cpse	r20, r1
- 1a6:	0d c0       	rjmp	.+26     	; 0x1c2 <Dio_PinWrite+0x32>
- 1a8:	2b b3       	in	r18, 0x1b	; 27
- 1aa:	81 e0       	ldi	r24, 0x01	; 1
- 1ac:	90 e0       	ldi	r25, 0x00	; 0
- 1ae:	02 c0       	rjmp	.+4      	; 0x1b4 <Dio_PinWrite+0x24>
- 1b0:	88 0f       	add	r24, r24
- 1b2:	99 1f       	adc	r25, r25
- 1b4:	6a 95       	dec	r22
- 1b6:	e2 f7       	brpl	.-8      	; 0x1b0 <Dio_PinWrite+0x20>
- 1b8:	80 95       	com	r24
- 1ba:	82 23       	and	r24, r18
- 1bc:	8b bb       	out	0x1b, r24	; 27
-	asm	volatile ("nop"); 
-	return ReturnValue;
-}
-ReturnValueType Dio_PinWrite(PortType port,uint8 PinNumber ,PinStateType PinState )
-{
-	ReturnValueType  ReturnValue = OK;
- 1be:	81 e0       	ldi	r24, 0x01	; 1
- 1c0:	70 c0       	rjmp	.+224    	; 0x2a2 <Dio_PinWrite+0x112>
-	switch (port)
-	{
-		case A:
-		if (PinState == PinLow) ClearBit(PORTA,PinNumber);
-		else if (PinState == PinHigh) SetBit(PORTA,PinNumber);
- 1c2:	41 30       	cpi	r20, 0x01	; 1
- 1c4:	09 f0       	breq	.+2      	; 0x1c8 <Dio_PinWrite+0x38>
- 1c6:	66 c0       	rjmp	.+204    	; 0x294 <Dio_PinWrite+0x104>
- 1c8:	2b b3       	in	r18, 0x1b	; 27
- 1ca:	81 e0       	ldi	r24, 0x01	; 1
- 1cc:	90 e0       	ldi	r25, 0x00	; 0
- 1ce:	02 c0       	rjmp	.+4      	; 0x1d4 <Dio_PinWrite+0x44>
- 1d0:	88 0f       	add	r24, r24
- 1d2:	99 1f       	adc	r25, r25
- 1d4:	6a 95       	dec	r22
- 1d6:	e2 f7       	brpl	.-8      	; 0x1d0 <Dio_PinWrite+0x40>
- 1d8:	82 2b       	or	r24, r18
- 1da:	8b bb       	out	0x1b, r24	; 27
-	asm	volatile ("nop"); 
-	return ReturnValue;
-}
-ReturnValueType Dio_PinWrite(PortType port,uint8 PinNumber ,PinStateType PinState )
-{
-	ReturnValueType  ReturnValue = OK;
- 1dc:	81 e0       	ldi	r24, 0x01	; 1
- 1de:	61 c0       	rjmp	.+194    	; 0x2a2 <Dio_PinWrite+0x112>
-		else if (PinState == PinHigh) SetBit(PORTA,PinNumber);
-		else ReturnValue = NOK ;
-		
-		break;
-		case B:
-		if (PinState == PinLow) ClearBit(PORTB,PinNumber);
- 1e0:	41 11       	cpse	r20, r1
- 1e2:	0d c0       	rjmp	.+26     	; 0x1fe <Dio_PinWrite+0x6e>
- 1e4:	28 b3       	in	r18, 0x18	; 24
- 1e6:	81 e0       	ldi	r24, 0x01	; 1
- 1e8:	90 e0       	ldi	r25, 0x00	; 0
- 1ea:	02 c0       	rjmp	.+4      	; 0x1f0 <Dio_PinWrite+0x60>
- 1ec:	88 0f       	add	r24, r24
- 1ee:	99 1f       	adc	r25, r25
- 1f0:	6a 95       	dec	r22
- 1f2:	e2 f7       	brpl	.-8      	; 0x1ec <Dio_PinWrite+0x5c>
- 1f4:	80 95       	com	r24
- 1f6:	82 23       	and	r24, r18
- 1f8:	88 bb       	out	0x18, r24	; 24
-	asm	volatile ("nop"); 
-	return ReturnValue;
-}
-ReturnValueType Dio_PinWrite(PortType port,uint8 PinNumber ,PinStateType PinState )
-{
-	ReturnValueType  ReturnValue = OK;
- 1fa:	81 e0       	ldi	r24, 0x01	; 1
- 1fc:	52 c0       	rjmp	.+164    	; 0x2a2 <Dio_PinWrite+0x112>
-		else ReturnValue = NOK ;
-		
-		break;
-		case B:
-		if (PinState == PinLow) ClearBit(PORTB,PinNumber);
-		else if (PinState == PinHigh) SetBit(PORTB,PinNumber);
- 1fe:	41 30       	cpi	r20, 0x01	; 1
- 200:	09 f0       	breq	.+2      	; 0x204 <Dio_PinWrite+0x74>
- 202:	4a c0       	rjmp	.+148    	; 0x298 <Dio_PinWrite+0x108>
- 204:	28 b3       	in	r18, 0x18	; 24
- 206:	81 e0       	ldi	r24, 0x01	; 1
- 208:	90 e0       	ldi	r25, 0x00	; 0
- 20a:	02 c0       	rjmp	.+4      	; 0x210 <Dio_PinWrite+0x80>
- 20c:	88 0f       	add	r24, r24
- 20e:	99 1f       	adc	r25, r25
- 210:	6a 95       	dec	r22
- 212:	e2 f7       	brpl	.-8      	; 0x20c <Dio_PinWrite+0x7c>
- 214:	82 2b       	or	r24, r18
- 216:	88 bb       	out	0x18, r24	; 24
-	asm	volatile ("nop"); 
-	return ReturnValue;
-}
-ReturnValueType Dio_PinWrite(PortType port,uint8 PinNumber ,PinStateType PinState )
-{
-	ReturnValueType  ReturnValue = OK;
- 218:	81 e0       	ldi	r24, 0x01	; 1
- 21a:	43 c0       	rjmp	.+134    	; 0x2a2 <Dio_PinWrite+0x112>
-		if (PinState == PinLow) ClearBit(PORTB,PinNumber);
-		else if (PinState == PinHigh) SetBit(PORTB,PinNumber);
-		else ReturnValue = NOK ;
-		break;
-		case C:
-		if (PinState == PinLow) ClearBit(PORTC,PinNumber);
- 21c:	41 11       	cpse	r20, r1
- 21e:	0d c0       	rjmp	.+26     	; 0x23a <Dio_PinWrite+0xaa>
- 220:	25 b3       	in	r18, 0x15	; 21
- 222:	81 e0       	ldi	r24, 0x01	; 1
- 224:	90 e0       	ldi	r25, 0x00	; 0
- 226:	02 c0       	rjmp	.+4      	; 0x22c <Dio_PinWrite+0x9c>
- 228:	88 0f       	add	r24, r24
- 22a:	99 1f       	adc	r25, r25
- 22c:	6a 95       	dec	r22
- 22e:	e2 f7       	brpl	.-8      	; 0x228 <Dio_PinWrite+0x98>
- 230:	80 95       	com	r24
- 232:	82 23       	and	r24, r18
- 234:	85 bb       	out	0x15, r24	; 21
-	asm	volatile ("nop"); 
-	return ReturnValue;
-}
-ReturnValueType Dio_PinWrite(PortType port,uint8 PinNumber ,PinStateType PinState )
-{
-	ReturnValueType  ReturnValue = OK;
- 236:	81 e0       	ldi	r24, 0x01	; 1
- 238:	34 c0       	rjmp	.+104    	; 0x2a2 <Dio_PinWrite+0x112>
-		else if (PinState == PinHigh) SetBit(PORTB,PinNumber);
-		else ReturnValue = NOK ;
-		break;
-		case C:
-		if (PinState == PinLow) ClearBit(PORTC,PinNumber);
-		else if (PinState == PinHigh) SetBit(PORTC,PinNumber);
- 23a:	41 30       	cpi	r20, 0x01	; 1
- 23c:	79 f5       	brne	.+94     	; 0x29c <Dio_PinWrite+0x10c>
- 23e:	25 b3       	in	r18, 0x15	; 21
- 240:	81 e0       	ldi	r24, 0x01	; 1
- 242:	90 e0       	ldi	r25, 0x00	; 0
- 244:	02 c0       	rjmp	.+4      	; 0x24a <Dio_PinWrite+0xba>
- 246:	88 0f       	add	r24, r24
- 248:	99 1f       	adc	r25, r25
- 24a:	6a 95       	dec	r22
- 24c:	e2 f7       	brpl	.-8      	; 0x246 <Dio_PinWrite+0xb6>
- 24e:	82 2b       	or	r24, r18
- 250:	85 bb       	out	0x15, r24	; 21
-	asm	volatile ("nop"); 
-	return ReturnValue;
-}
-ReturnValueType Dio_PinWrite(PortType port,uint8 PinNumber ,PinStateType PinState )
-{
-	ReturnValueType  ReturnValue = OK;
- 252:	81 e0       	ldi	r24, 0x01	; 1
- 254:	26 c0       	rjmp	.+76     	; 0x2a2 <Dio_PinWrite+0x112>
-		if (PinState == PinLow) ClearBit(PORTC,PinNumber);
-		else if (PinState == PinHigh) SetBit(PORTC,PinNumber);
-		else ReturnValue = NOK ;
-		break;
-		case D:
-		if (PinState == PinLow) ClearBit(PORTD,PinNumber);
- 256:	41 11       	cpse	r20, r1
- 258:	0d c0       	rjmp	.+26     	; 0x274 <Dio_PinWrite+0xe4>
- 25a:	22 b3       	in	r18, 0x12	; 18
- 25c:	81 e0       	ldi	r24, 0x01	; 1
- 25e:	90 e0       	ldi	r25, 0x00	; 0
- 260:	02 c0       	rjmp	.+4      	; 0x266 <Dio_PinWrite+0xd6>
- 262:	88 0f       	add	r24, r24
- 264:	99 1f       	adc	r25, r25
- 266:	6a 95       	dec	r22
- 268:	e2 f7       	brpl	.-8      	; 0x262 <Dio_PinWrite+0xd2>
- 26a:	80 95       	com	r24
- 26c:	82 23       	and	r24, r18
- 26e:	82 bb       	out	0x12, r24	; 18
-	asm	volatile ("nop"); 
-	return ReturnValue;
-}
-ReturnValueType Dio_PinWrite(PortType port,uint8 PinNumber ,PinStateType PinState )
-{
-	ReturnValueType  ReturnValue = OK;
- 270:	81 e0       	ldi	r24, 0x01	; 1
- 272:	17 c0       	rjmp	.+46     	; 0x2a2 <Dio_PinWrite+0x112>
-		else if (PinState == PinHigh) SetBit(PORTC,PinNumber);
-		else ReturnValue = NOK ;
-		break;
-		case D:
-		if (PinState == PinLow) ClearBit(PORTD,PinNumber);
-		else if (PinState == PinHigh) SetBit(PORTD,PinNumber);
- 274:	41 30       	cpi	r20, 0x01	; 1
- 276:	a1 f4       	brne	.+40     	; 0x2a0 <Dio_PinWrite+0x110>
- 278:	22 b3       	in	r18, 0x12	; 18
- 27a:	81 e0       	ldi	r24, 0x01	; 1
- 27c:	90 e0       	ldi	r25, 0x00	; 0
- 27e:	02 c0       	rjmp	.+4      	; 0x284 <Dio_PinWrite+0xf4>
- 280:	88 0f       	add	r24, r24
- 282:	99 1f       	adc	r25, r25
- 284:	6a 95       	dec	r22
- 286:	e2 f7       	brpl	.-8      	; 0x280 <Dio_PinWrite+0xf0>
- 288:	82 2b       	or	r24, r18
- 28a:	82 bb       	out	0x12, r24	; 18
-	asm	volatile ("nop"); 
-	return ReturnValue;
-}
-ReturnValueType Dio_PinWrite(PortType port,uint8 PinNumber ,PinStateType PinState )
-{
-	ReturnValueType  ReturnValue = OK;
- 28c:	81 e0       	ldi	r24, 0x01	; 1
- 28e:	09 c0       	rjmp	.+18     	; 0x2a2 <Dio_PinWrite+0x112>
-		if (PinState == PinLow) ClearBit(PORTD,PinNumber);
-		else if (PinState == PinHigh) SetBit(PORTD,PinNumber);
+		if (PinDirection == PinInput) ClearBit(DDRD,PinNumber);
+		else if (PinDirection == PinOutput) SetBit(DDRD,PinNumber);
 		else ReturnValue = NOK ;
 		break;
 		default:
 		ReturnValue = NOK ;
- 290:	80 e0       	ldi	r24, 0x00	; 0
- 292:	07 c0       	rjmp	.+14     	; 0x2a2 <Dio_PinWrite+0x112>
+ 17c:	80 e0       	ldi	r24, 0x00	; 0
+ 17e:	08 95       	ret
 	switch (port)
 	{
 		case A:
-		if (PinState == PinLow) ClearBit(PORTA,PinNumber);
-		else if (PinState == PinHigh) SetBit(PORTA,PinNumber);
-		else ReturnValue = NOK ;
- 294:	80 e0       	ldi	r24, 0x00	; 0
- 296:	05 c0       	rjmp	.+10     	; 0x2a2 <Dio_PinWrite+0x112>
+		if (PinDirection == PinInput) ClearBit(DDRA,PinNumber);
+		else if (PinDirection == PinOutput) SetBit(DDRA,PinNumber);
+		else ReturnValue = NOK ; 
+ 180:	80 e0       	ldi	r24, 0x00	; 0
+ 182:	08 95       	ret
 		
 		break;
 		case B:
-		if (PinState == PinLow) ClearBit(PORTB,PinNumber);
-		else if (PinState == PinHigh) SetBit(PORTB,PinNumber);
+		if (PinDirection == PinInput) ClearBit(DDRB,PinNumber);
+		else if (PinDirection == PinOutput) SetBit(DDRB,PinNumber);
 		else ReturnValue = NOK ;
- 298:	80 e0       	ldi	r24, 0x00	; 0
- 29a:	03 c0       	rjmp	.+6      	; 0x2a2 <Dio_PinWrite+0x112>
+ 184:	80 e0       	ldi	r24, 0x00	; 0
+ 186:	08 95       	ret
 		break;
 		case C:
-		if (PinState == PinLow) ClearBit(PORTC,PinNumber);
-		else if (PinState == PinHigh) SetBit(PORTC,PinNumber);
+		if (PinDirection == PinInput) ClearBit(DDRC,PinNumber);
+		else if (PinDirection == PinOutput) SetBit(DDRC,PinNumber);
 		else ReturnValue = NOK ;
- 29c:	80 e0       	ldi	r24, 0x00	; 0
- 29e:	01 c0       	rjmp	.+2      	; 0x2a2 <Dio_PinWrite+0x112>
+ 188:	80 e0       	ldi	r24, 0x00	; 0
+ 18a:	08 95       	ret
 		break;
 		case D:
-		if (PinState == PinLow) ClearBit(PORTD,PinNumber);
-		else if (PinState == PinHigh) SetBit(PORTD,PinNumber);
+		if (PinDirection == PinInput) ClearBit(DDRD,PinNumber);
+		else if (PinDirection == PinOutput) SetBit(DDRD,PinNumber);
 		else ReturnValue = NOK ;
- 2a0:	80 e0       	ldi	r24, 0x00	; 0
-		break;
-		default:
+ 18c:	80 e0       	ldi	r24, 0x00	; 0
 		ReturnValue = NOK ;
 		break;
 	}
-	asm	volatile ("nop"); 
- 2a2:	00 00       	nop
+	//asm	volatile ("nop"); 
 	return ReturnValue;
 }
- 2a4:	08 95       	ret
+ 18e:	08 95       	ret
 
-000002a6 <__vector_1>:
- 2a6:	1f 92       	push	r1
- 2a8:	0f 92       	push	r0
- 2aa:	0f b6       	in	r0, 0x3f	; 63
- 2ac:	0f 92       	push	r0
- 2ae:	11 24       	eor	r1, r1
- 2b0:	8f 93       	push	r24
- 2b2:	81 e0       	ldi	r24, 0x01	; 1
- 2b4:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
- 2b8:	8f 91       	pop	r24
- 2ba:	0f 90       	pop	r0
- 2bc:	0f be       	out	0x3f, r0	; 63
- 2be:	0f 90       	pop	r0
- 2c0:	1f 90       	pop	r1
- 2c2:	18 95       	reti
+00000190 <__vector_1>:
+ 190:	1f 92       	push	r1
+ 192:	0f 92       	push	r0
+ 194:	0f b6       	in	r0, 0x3f	; 63
+ 196:	0f 92       	push	r0
+ 198:	11 24       	eor	r1, r1
+ 19a:	8f 93       	push	r24
+ 19c:	81 e0       	ldi	r24, 0x01	; 1
+ 19e:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <_edata>
+ 1a2:	8f 91       	pop	r24
+ 1a4:	0f 90       	pop	r0
+ 1a6:	0f be       	out	0x3f, r0	; 63
+ 1a8:	0f 90       	pop	r0
+ 1aa:	1f 90       	pop	r1
+ 1ac:	18 95       	reti
 
-000002c4 <main>:
+000001ae <main>:
+// 	 
+// 	 SetBit(TCCR1B,CS10);
+// 	 ClearBit(TCCR1B,CS11);
+// 	 SetBit(TCCR1B,CS12);
 
-
-
-int main(void)
-{
-	 Dio_PinSetDirection(C,3,PinOutput);
- 2c4:	41 e0       	ldi	r20, 0x01	; 1
- 2c6:	63 e0       	ldi	r22, 0x03	; 3
- 2c8:	82 e0       	ldi	r24, 0x02	; 2
- 2ca:	0e 94 3e 00 	call	0x7c	; 0x7c <Dio_PinSetDirection>
-	 Dio_PinSetDirection(C,4,PinOutput);
- 2ce:	41 e0       	ldi	r20, 0x01	; 1
- 2d0:	64 e0       	ldi	r22, 0x04	; 4
- 2d2:	82 e0       	ldi	r24, 0x02	; 2
- 2d4:	0e 94 3e 00 	call	0x7c	; 0x7c <Dio_PinSetDirection>
-	 Dio_PinSetDirection(D,4,PinOutput);
- 2d8:	41 e0       	ldi	r20, 0x01	; 1
- 2da:	64 e0       	ldi	r22, 0x04	; 4
- 2dc:	83 e0       	ldi	r24, 0x03	; 3
- 2de:	0e 94 3e 00 	call	0x7c	; 0x7c <Dio_PinSetDirection>
-	 
-	 Dio_PinWrite(C,3,PinHigh);
- 2e2:	41 e0       	ldi	r20, 0x01	; 1
- 2e4:	63 e0       	ldi	r22, 0x03	; 3
- 2e6:	82 e0       	ldi	r24, 0x02	; 2
- 2e8:	0e 94 c8 00 	call	0x190	; 0x190 <Dio_PinWrite>
-	 Dio_PinWrite(C,4,PinLow);
- 2ec:	40 e0       	ldi	r20, 0x00	; 0
- 2ee:	64 e0       	ldi	r22, 0x04	; 4
- 2f0:	82 e0       	ldi	r24, 0x02	; 2
- 2f2:	0e 94 c8 00 	call	0x190	; 0x190 <Dio_PinWrite>
-	 
-	 SetBit(TCCR1A,WGM10);
- 2f6:	8f b5       	in	r24, 0x2f	; 47
- 2f8:	81 60       	ori	r24, 0x01	; 1
- 2fa:	8f bd       	out	0x2f, r24	; 47
-	 ClearBit(TCCR1A,WGM11);
- 2fc:	8f b5       	in	r24, 0x2f	; 47
- 2fe:	8d 7f       	andi	r24, 0xFD	; 253
- 300:	8f bd       	out	0x2f, r24	; 47
-	 SetBit(TCCR1B,WGM12);
- 302:	8e b5       	in	r24, 0x2e	; 46
- 304:	88 60       	ori	r24, 0x08	; 8
- 306:	8e bd       	out	0x2e, r24	; 46
-	 ClearBit(TCCR1B,WGM13);
- 308:	8e b5       	in	r24, 0x2e	; 46
- 30a:	8f 7e       	andi	r24, 0xEF	; 239
- 30c:	8e bd       	out	0x2e, r24	; 46
-	 
-	 ClearBit(TCCR1A,COM1B0);
- 30e:	8f b5       	in	r24, 0x2f	; 47
- 310:	8f 7e       	andi	r24, 0xEF	; 239
- 312:	8f bd       	out	0x2f, r24	; 47
-	 SetBit(TCCR1A,COM1B1) ;
- 314:	8f b5       	in	r24, 0x2f	; 47
- 316:	80 62       	ori	r24, 0x20	; 32
- 318:	8f bd       	out	0x2f, r24	; 47
-	 OCR1BH = 0 ;
- 31a:	19 bc       	out	0x29, r1	; 41
-	 OCR1BL = 128 ;
- 31c:	80 e8       	ldi	r24, 0x80	; 128
- 31e:	88 bd       	out	0x28, r24	; 40
-	 
-	 SetBit(TCCR1B,CS10);
- 320:	8e b5       	in	r24, 0x2e	; 46
- 322:	81 60       	ori	r24, 0x01	; 1
- 324:	8e bd       	out	0x2e, r24	; 46
-	 ClearBit(TCCR1B,CS11);
- 326:	8e b5       	in	r24, 0x2e	; 46
- 328:	8d 7f       	andi	r24, 0xFD	; 253
- 32a:	8e bd       	out	0x2e, r24	; 46
-	 SetBit(TCCR1B,CS12);
- 32c:	8e b5       	in	r24, 0x2e	; 46
- 32e:	84 60       	ori	r24, 0x04	; 4
- 330:	8e bd       	out	0x2e, r24	; 46
-	 
-	sei();
- 332:	78 94       	sei
+SetBit(TCCR2,WGM20); SetBit(TCCR2,WGM21); 
+ 1ae:	85 b5       	in	r24, 0x25	; 37
+ 1b0:	80 64       	ori	r24, 0x40	; 64
+ 1b2:	85 bd       	out	0x25, r24	; 37
+ 1b4:	85 b5       	in	r24, 0x25	; 37
+ 1b6:	88 60       	ori	r24, 0x08	; 8
+ 1b8:	85 bd       	out	0x25, r24	; 37
+ClearBit(TCCR2,COM20); SetBit(TCCR2,COM21) ;
+ 1ba:	85 b5       	in	r24, 0x25	; 37
+ 1bc:	8f 7e       	andi	r24, 0xEF	; 239
+ 1be:	85 bd       	out	0x25, r24	; 37
+ 1c0:	85 b5       	in	r24, 0x25	; 37
+ 1c2:	80 62       	ori	r24, 0x20	; 32
+ 1c4:	85 bd       	out	0x25, r24	; 37
+Dio_PinSetDirection(D,7,PinOutput);
+ 1c6:	41 e0       	ldi	r20, 0x01	; 1
+ 1c8:	67 e0       	ldi	r22, 0x07	; 7
+ 1ca:	83 e0       	ldi	r24, 0x03	; 3
+ 1cc:	0e 94 3e 00 	call	0x7c	; 0x7c <Dio_PinSetDirection>
+	OCR2 = 12 ;
+ 1d0:	8c e0       	ldi	r24, 0x0C	; 12
+ 1d2:	83 bd       	out	0x23, r24	; 35
+SetBit(TCCR2,CS22);SetBit(TCCR2,CS21);SetBit(TCCR2,CS20);	 
+ 1d4:	85 b5       	in	r24, 0x25	; 37
+ 1d6:	84 60       	ori	r24, 0x04	; 4
+ 1d8:	85 bd       	out	0x25, r24	; 37
+ 1da:	85 b5       	in	r24, 0x25	; 37
+ 1dc:	82 60       	ori	r24, 0x02	; 2
+ 1de:	85 bd       	out	0x25, r24	; 37
+ 1e0:	85 b5       	in	r24, 0x25	; 37
+ 1e2:	81 60       	ori	r24, 0x01	; 1
+ 1e4:	85 bd       	out	0x25, r24	; 37
+	
+	while (1)
+	{
+	_delay_ms(250);
+	OCR2 ++; 
+	if(OCR2 == 40) OCR2 = 5 ; 
+ 1e6:	95 e0       	ldi	r25, 0x05	; 5
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 334:	2f ef       	ldi	r18, 0xFF	; 255
- 336:	89 e6       	ldi	r24, 0x69	; 105
- 338:	98 e1       	ldi	r25, 0x18	; 24
- 33a:	21 50       	subi	r18, 0x01	; 1
- 33c:	80 40       	sbci	r24, 0x00	; 0
- 33e:	90 40       	sbci	r25, 0x00	; 0
- 340:	e1 f7       	brne	.-8      	; 0x33a <main+0x76>
- 342:	00 c0       	rjmp	.+0      	; 0x344 <main+0x80>
- 344:	00 00       	nop
- 346:	f6 cf       	rjmp	.-20     	; 0x334 <main+0x70>
+ 1e8:	2f ef       	ldi	r18, 0xFF	; 255
+ 1ea:	34 e3       	ldi	r19, 0x34	; 52
+ 1ec:	8c e0       	ldi	r24, 0x0C	; 12
+ 1ee:	21 50       	subi	r18, 0x01	; 1
+ 1f0:	30 40       	sbci	r19, 0x00	; 0
+ 1f2:	80 40       	sbci	r24, 0x00	; 0
+ 1f4:	e1 f7       	brne	.-8      	; 0x1ee <main+0x40>
+ 1f6:	00 c0       	rjmp	.+0      	; 0x1f8 <main+0x4a>
+ 1f8:	00 00       	nop
+SetBit(TCCR2,CS22);SetBit(TCCR2,CS21);SetBit(TCCR2,CS20);	 
+	
+	while (1)
+	{
+	_delay_ms(250);
+	OCR2 ++; 
+ 1fa:	83 b5       	in	r24, 0x23	; 35
+ 1fc:	8f 5f       	subi	r24, 0xFF	; 255
+ 1fe:	83 bd       	out	0x23, r24	; 35
+	if(OCR2 == 40) OCR2 = 5 ; 
+ 200:	83 b5       	in	r24, 0x23	; 35
+ 202:	88 32       	cpi	r24, 0x28	; 40
+ 204:	89 f7       	brne	.-30     	; 0x1e8 <main+0x3a>
+ 206:	93 bd       	out	0x23, r25	; 35
+ 208:	ef cf       	rjmp	.-34     	; 0x1e8 <main+0x3a>
 
-00000348 <__vector_11>:
+0000020a <__vector_11>:
 {
 	
 }
 
 ISR(TIMER0_OVF_vect)
 {
- 348:	1f 92       	push	r1
- 34a:	0f 92       	push	r0
- 34c:	0f b6       	in	r0, 0x3f	; 63
- 34e:	0f 92       	push	r0
- 350:	11 24       	eor	r1, r1
+ 20a:	1f 92       	push	r1
+ 20c:	0f 92       	push	r0
+ 20e:	0f b6       	in	r0, 0x3f	; 63
+ 210:	0f 92       	push	r0
+ 212:	11 24       	eor	r1, r1
 	Timer0_OVF_CB();
 }
- 352:	0f 90       	pop	r0
- 354:	0f be       	out	0x3f, r0	; 63
- 356:	0f 90       	pop	r0
- 358:	1f 90       	pop	r1
- 35a:	18 95       	reti
+ 214:	0f 90       	pop	r0
+ 216:	0f be       	out	0x3f, r0	; 63
+ 218:	0f 90       	pop	r0
+ 21a:	1f 90       	pop	r1
+ 21c:	18 95       	reti
 
-0000035c <__vector_10>:
+0000021e <__vector_10>:
 
 ISR(TIMER0_COMP_vect)
 {
- 35c:	1f 92       	push	r1
- 35e:	0f 92       	push	r0
- 360:	0f b6       	in	r0, 0x3f	; 63
- 362:	0f 92       	push	r0
- 364:	11 24       	eor	r1, r1
+ 21e:	1f 92       	push	r1
+ 220:	0f 92       	push	r0
+ 222:	0f b6       	in	r0, 0x3f	; 63
+ 224:	0f 92       	push	r0
+ 226:	11 24       	eor	r1, r1
 	Timer0_CMP_CB();
- 366:	0f 90       	pop	r0
- 368:	0f be       	out	0x3f, r0	; 63
- 36a:	0f 90       	pop	r0
- 36c:	1f 90       	pop	r1
- 36e:	18 95       	reti
+ 228:	0f 90       	pop	r0
+ 22a:	0f be       	out	0x3f, r0	; 63
+ 22c:	0f 90       	pop	r0
+ 22e:	1f 90       	pop	r1
+ 230:	18 95       	reti
 
-00000370 <Timer1_OVF_CB>:
+00000232 <Timer1_OVF_CB>:
 }
 void Timer1_OVF_CB(void)
 {
 	ToggleBit(PORTA,0);
 }
 void Timer1_CMP_CB(void) {}
- 370:	9b b3       	in	r25, 0x1b	; 27
- 372:	81 e0       	ldi	r24, 0x01	; 1
- 374:	89 27       	eor	r24, r25
- 376:	8b bb       	out	0x1b, r24	; 27
- 378:	08 95       	ret
+ 232:	9b b3       	in	r25, 0x1b	; 27
+ 234:	81 e0       	ldi	r24, 0x01	; 1
+ 236:	89 27       	eor	r24, r25
+ 238:	8b bb       	out	0x1b, r24	; 27
+ 23a:	08 95       	ret
 
-0000037a <__vector_9>:
+0000023c <__vector_9>:
 ISR(TIMER1_OVF_vect)
 {
- 37a:	1f 92       	push	r1
- 37c:	0f 92       	push	r0
- 37e:	0f b6       	in	r0, 0x3f	; 63
- 380:	0f 92       	push	r0
- 382:	11 24       	eor	r1, r1
- 384:	2f 93       	push	r18
- 386:	3f 93       	push	r19
- 388:	4f 93       	push	r20
- 38a:	5f 93       	push	r21
- 38c:	6f 93       	push	r22
- 38e:	7f 93       	push	r23
- 390:	8f 93       	push	r24
- 392:	9f 93       	push	r25
- 394:	af 93       	push	r26
- 396:	bf 93       	push	r27
- 398:	ef 93       	push	r30
- 39a:	ff 93       	push	r31
+ 23c:	1f 92       	push	r1
+ 23e:	0f 92       	push	r0
+ 240:	0f b6       	in	r0, 0x3f	; 63
+ 242:	0f 92       	push	r0
+ 244:	11 24       	eor	r1, r1
+ 246:	2f 93       	push	r18
+ 248:	3f 93       	push	r19
+ 24a:	4f 93       	push	r20
+ 24c:	5f 93       	push	r21
+ 24e:	6f 93       	push	r22
+ 250:	7f 93       	push	r23
+ 252:	8f 93       	push	r24
+ 254:	9f 93       	push	r25
+ 256:	af 93       	push	r26
+ 258:	bf 93       	push	r27
+ 25a:	ef 93       	push	r30
+ 25c:	ff 93       	push	r31
 	Timer1_OVF_CB();
- 39c:	0e 94 b8 01 	call	0x370	; 0x370 <Timer1_OVF_CB>
+ 25e:	0e 94 19 01 	call	0x232	; 0x232 <Timer1_OVF_CB>
 }
- 3a0:	ff 91       	pop	r31
- 3a2:	ef 91       	pop	r30
- 3a4:	bf 91       	pop	r27
- 3a6:	af 91       	pop	r26
- 3a8:	9f 91       	pop	r25
- 3aa:	8f 91       	pop	r24
- 3ac:	7f 91       	pop	r23
- 3ae:	6f 91       	pop	r22
- 3b0:	5f 91       	pop	r21
- 3b2:	4f 91       	pop	r20
- 3b4:	3f 91       	pop	r19
- 3b6:	2f 91       	pop	r18
- 3b8:	0f 90       	pop	r0
- 3ba:	0f be       	out	0x3f, r0	; 63
- 3bc:	0f 90       	pop	r0
- 3be:	1f 90       	pop	r1
- 3c0:	18 95       	reti
+ 262:	ff 91       	pop	r31
+ 264:	ef 91       	pop	r30
+ 266:	bf 91       	pop	r27
+ 268:	af 91       	pop	r26
+ 26a:	9f 91       	pop	r25
+ 26c:	8f 91       	pop	r24
+ 26e:	7f 91       	pop	r23
+ 270:	6f 91       	pop	r22
+ 272:	5f 91       	pop	r21
+ 274:	4f 91       	pop	r20
+ 276:	3f 91       	pop	r19
+ 278:	2f 91       	pop	r18
+ 27a:	0f 90       	pop	r0
+ 27c:	0f be       	out	0x3f, r0	; 63
+ 27e:	0f 90       	pop	r0
+ 280:	1f 90       	pop	r1
+ 282:	18 95       	reti
 
-000003c2 <_exit>:
- 3c2:	f8 94       	cli
+00000284 <_exit>:
+ 284:	f8 94       	cli
 
-000003c4 <__stop_program>:
- 3c4:	ff cf       	rjmp	.-2      	; 0x3c4 <__stop_program>
+00000286 <__stop_program>:
+ 286:	ff cf       	rjmp	.-2      	; 0x286 <__stop_program>
