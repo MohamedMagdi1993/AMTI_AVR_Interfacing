@@ -10,60 +10,51 @@
 #include <avr/interrupt.h>
 #include "Dio.h"
 #include "Bitwise.h"
-#include "LED.h"
-
-
+#include "LCD.h"
+#include "StringHandler.h"
+volatile uint16 Period = 0;
+volatile uint8 MeasurmentCount = 0 ;
 
 int main(void)
 {
-//Enable watchdog 
-
-WDTCR = (WDTCR &~ 0x07  )|(0x07 & 0x07) ;
-WDTCR |= (1<<WDE);
-	
-	 Dio_PinSetDirection(C,3,PinOutput);
-	 Dio_PinSetDirection(C,4,PinOutput);
-	 Dio_PinSetDirection(D,4,PinOutput);
-	 
-	 Dio_PinWrite(C,3,PinHigh);
-	 Dio_PinWrite(C,4,PinLow);
-	 
-	 SetBit(TCCR1A,WGM10);
+	LCD_Init();
+	Dio_PinSetDirection(D,6,PinInput);
+	Dio_PinPullupState(D,6,Active);
+	 uint8 DataString[6] = {0} ;
+	 ClearBit(TCCR1A,WGM10);
 	 ClearBit(TCCR1A,WGM11);
-	 SetBit(TCCR1B,WGM12);
+	 ClearBit(TCCR1B,WGM12);
 	 ClearBit(TCCR1B,WGM13);
-	 
-	 ClearBit(TCCR1A,COM1B0);
-	 SetBit(TCCR1A,COM1B1) ;
-	 
-	 OCR1BH = 0 ;
-	 OCR1BL = 128 ;
-	 
+	 	 
 	 SetBit(TCCR1B,CS10);
 	 ClearBit(TCCR1B,CS11);
 	 SetBit(TCCR1B,CS12);
-	 asm volatile ("WDR");
-	uint8 Watchdog = 1 ;
+	 
+	 SetBit(TCCR1B,ICES1);
+	 SetBit(TIMSK,TICIE1);
+	
+	sei();
 	while (1)
 	{
-		asm volatile ("WDR");
-	_delay_ms(500);
-	OCR1BH=0 ;
-	OCR1BL+=50;
-	if (Watchdog == 1)
-	{
-		WDTCR = (1<<WDTOE)|(1<<WDE) ;
-		WDTCR =0 ;	
-		Watchdog = 0 ;
-	}
-	
-	_delay_ms(5000);
-	
-	
+			if (MeasurmentCount %2 == 0)
+			{
+				U16Decimal2String(Period,DataString);
+				LCD_Postion(1,1);
+				LCD_DataString(DataString);
+			}
 	}
 }
-
-// ISR(TIMER1_COMPA_vect)
-// {
-// 	ToggleBit(PORTC,7) ;
-// }
+ISR(TIMER1_CAPT_vect)
+{
+	if (MeasurmentCount%2 == 0)
+	{
+		
+		Period = ICR1;
+	}
+	else
+	{
+		Period = ICR1 - Period;
+		//TCNT1 = 0 ;
+	}
+	MeasurmentCount++;
+}
