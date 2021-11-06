@@ -6,7 +6,10 @@
  */ 
 
 #include "Timer0.h"
-
+#include "STD_Types.h"
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include "Bitwise.h"
 void Timer0_StartNormal(uint8 StartValue,uint8 Prescaler)
 {
 	TCNT0 = StartValue ;

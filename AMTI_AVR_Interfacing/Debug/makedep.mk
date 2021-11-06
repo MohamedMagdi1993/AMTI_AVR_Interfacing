@@ -22,3 +22,7 @@ SevenSegement.c
 
 StringHandler.c
 
+Timer0.c
+
+Timer1.c
+
