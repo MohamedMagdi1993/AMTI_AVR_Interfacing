@@ -16,39 +16,50 @@
 
 int main(void)
 {
-// 	 Dio_PinSetDirection(C,3,PinOutput);
-// 	 Dio_PinSetDirection(C,4,PinOutput);
-// 	 Dio_PinSetDirection(D,4,PinOutput);
-// 	 
-// 	 Dio_PinWrite(C,3,PinHigh);
-// 	 Dio_PinWrite(C,4,PinLow);
-// 	 
-// 	 SetBit(TCCR1A,WGM10);
-// 	 ClearBit(TCCR1A,WGM11);
-// 	 SetBit(TCCR1B,WGM12);
-// 	 ClearBit(TCCR1B,WGM13);
-// 	 
-// 	 ClearBit(TCCR1A,COM1B0);
-// 	 SetBit(TCCR1A,COM1B1) ;
-// 	 OCR1BH = 0 ;
-// 	 OCR1BL = 128 ;
-// 	 
-// 	 SetBit(TCCR1B,CS10);
-// 	 ClearBit(TCCR1B,CS11);
-// 	 SetBit(TCCR1B,CS12);
+//Enable watchdog 
 
-SetBit(TCCR2,WGM20); SetBit(TCCR2,WGM21); 
-ClearBit(TCCR2,COM20); SetBit(TCCR2,COM21) ;
-Dio_PinSetDirection(D,7,PinOutput);
-	OCR2 = 12 ;
-SetBit(TCCR2,CS22);SetBit(TCCR2,CS21);SetBit(TCCR2,CS20);	 
+WDTCR = (WDTCR &~ 0x07  )|(0x07 & 0x07) ;
+WDTCR |= (1<<WDE);
 	
+	 Dio_PinSetDirection(C,3,PinOutput);
+	 Dio_PinSetDirection(C,4,PinOutput);
+	 Dio_PinSetDirection(D,4,PinOutput);
+	 
+	 Dio_PinWrite(C,3,PinHigh);
+	 Dio_PinWrite(C,4,PinLow);
+	 
+	 SetBit(TCCR1A,WGM10);
+	 ClearBit(TCCR1A,WGM11);
+	 SetBit(TCCR1B,WGM12);
+	 ClearBit(TCCR1B,WGM13);
+	 
+	 ClearBit(TCCR1A,COM1B0);
+	 SetBit(TCCR1A,COM1B1) ;
+	 
+	 OCR1BH = 0 ;
+	 OCR1BL = 128 ;
+	 
+	 SetBit(TCCR1B,CS10);
+	 ClearBit(TCCR1B,CS11);
+	 SetBit(TCCR1B,CS12);
+	 asm volatile ("WDR");
+	uint8 Watchdog = 1 ;
 	while (1)
 	{
-	_delay_ms(250);
-	OCR2 ++; 
-	if(OCR2 == 40) OCR2 = 5 ; 
-		
+		asm volatile ("WDR");
+	_delay_ms(500);
+	OCR1BH=0 ;
+	OCR1BL+=50;
+	if (Watchdog == 1)
+	{
+		WDTCR = (1<<WDTOE)|(1<<WDE) ;
+		WDTCR =0 ;	
+		Watchdog = 0 ;
+	}
+	
+	_delay_ms(5000);
+	
+	
 	}
 }
 
