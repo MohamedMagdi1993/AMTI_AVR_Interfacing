@@ -19,7 +19,7 @@ int main(void)
 {
 	LCD_Init();
 	Dio_PinSetDirection(D,6,PinInput);
-	Dio_PinPullupState(D,6,Active);
+	//Dio_PinPullupState(D,6,Active);
 	 uint8 DataString[6] = {0} ;
 	 ClearBit(TCCR1A,WGM10);
 	 ClearBit(TCCR1A,WGM11);
@@ -30,7 +30,7 @@ int main(void)
 	 ClearBit(TCCR1B,CS11);
 	 SetBit(TCCR1B,CS12);
 	 
-	 SetBit(TCCR1B,ICES1);
+	 SetBit(TCCR1B,ICES1); // Detect Rising edge
 	 SetBit(TIMSK,TICIE1);
 	
 	sei();
@@ -48,13 +48,14 @@ ISR(TIMER1_CAPT_vect)
 {
 	if (MeasurmentCount%2 == 0)
 	{
-		
 		Period = ICR1;
+		
 	}
 	else
 	{
 		Period = ICR1 - Period;
-		//TCNT1 = 0 ;
+		
 	}
+	ToggleBit(TCCR1B,ICES1);
 	MeasurmentCount++;
 }
