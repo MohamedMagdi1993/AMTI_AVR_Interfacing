@@ -46,7 +46,9 @@ C_SRCS +=  \
 ../main.c \
 ../PushButton.c \
 ../SevenSegement.c \
-../StringHandler.c
+../StringHandler.c \
+../Timer0.c \
+../Timer1.c
 
 
 PREPROCESSING_SRCS += 
@@ -65,7 +67,9 @@ LED.o \
 main.o \
 PushButton.o \
 SevenSegement.o \
-StringHandler.o
+StringHandler.o \
+Timer0.o \
+Timer1.o
 
 OBJS_AS_ARGS +=  \
 ADC.o \
@@ -77,7 +81,9 @@ LED.o \
 main.o \
 PushButton.o \
 SevenSegement.o \
-StringHandler.o
+StringHandler.o \
+Timer0.o \
+Timer1.o
 
 C_DEPS +=  \
 ADC.d \
@@ -89,7 +95,9 @@ LED.d \
 main.d \
 PushButton.d \
 SevenSegement.d \
-StringHandler.d
+StringHandler.d \
+Timer0.d \
+Timer1.d
 
 C_DEPS_AS_ARGS +=  \
 ADC.d \
@@ -101,7 +109,9 @@ LED.d \
 main.d \
 PushButton.d \
 SevenSegement.d \
-StringHandler.d
+StringHandler.d \
+Timer0.d \
+Timer1.d
 
 OUTPUT_FILE_PATH +=AMTI_AVR_Interfacing.elf
 
@@ -117,6 +127,10 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

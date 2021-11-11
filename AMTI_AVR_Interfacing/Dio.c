@@ -61,7 +61,7 @@ ReturnValueType Dio_PinSetDirection (PortType port , uint8 PinNumber,PinDirectio
 		ReturnValue = NOK ;
 		break;
 	}
-	asm	volatile ("nop"); 
+	//asm	volatile ("nop"); 
 	return ReturnValue;
 }
 ReturnValueType Dio_GroupSetDirection(PortType port,uint8 GroupMask, uint8 GroupDirection)

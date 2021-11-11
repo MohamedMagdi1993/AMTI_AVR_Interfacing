@@ -8,31 +8,54 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include "Dio.h"
+#include "Bitwise.h"
 #include "LCD.h"
 #include "StringHandler.h"
-#include "ADC.h"
-volatile uint8 ADC_Flag = 0;
+volatile uint16 Period = 0;
+volatile uint8 MeasurmentCount = 0 ;
+
 int main(void)
 {
-	
-	uint16 ADC_Data = 0 ;
-	uint8 ADC_Data_String[4] = {0} ;
 	LCD_Init();
-	Adc_Init();
-	Adc_ChannelInit(ADC1) ;
+	Dio_PinSetDirection(D,6,PinInput);
+	//Dio_PinPullupState(D,6,Active);
+	 uint8 DataString[6] = {0} ;
+	 ClearBit(TCCR1A,WGM10);
+	 ClearBit(TCCR1A,WGM11);
+	 ClearBit(TCCR1B,WGM12);
+	 ClearBit(TCCR1B,WGM13);
+	 	 
+	 SetBit(TCCR1B,CS10);
+	 ClearBit(TCCR1B,CS11);
+	 SetBit(TCCR1B,CS12);
+	 
+	 SetBit(TCCR1B,ICES1); // Detect Rising edge
+	 SetBit(TIMSK,TICIE1);
 	
+	sei();
 	while (1)
 	{
-	
-	
-	Adc_ReadChannel(ADC0,&ADC_Data) ;
-	LCD_Postion(1,1);
-	Decimal2String( (ADC_Data>>8) ,ADC_Data_String);
-	LCD_DataString(ADC_Data_String) ;
-	Decimal2String((uint8) ADC_Data ,ADC_Data_String);
-	LCD_DataString(ADC_Data_String) ;
-	} 
-		
-	
+			if (MeasurmentCount %2 == 0)
+			{
+				U16Decimal2String(Period,DataString);
+				LCD_Postion(1,1);
+				LCD_DataString(DataString);
+			}
+	}
 }
-
+ISR(TIMER1_CAPT_vect)
+{
+	if (MeasurmentCount%2 == 0)
+	{
+		Period = ICR1;
+		
+	}
+	else
+	{
+		Period = ICR1 - Period;
+		
+	}
+	ToggleBit(TCCR1B,ICES1);
+	MeasurmentCount++;
+}
