@@ -14,21 +14,34 @@
 #include "StringHandler.h"
 #include "UART.h"
 #include "PushButton.h"
+#include "SPI.h"
 
+extern uint8 SPI_Slave_DataReceived; 
+extern uint8 SPI_Slave_DataSend;
 int main(void)
 {
-	PushButton_Init();
+	
 	LCD_Init();
-	UART_Init();
-	uint8 UARTData = 0 ;
+	SPI_Init();
+	
+	uint8 SPI_SendByte = 0x55 ;
+	uint8 SPI_ReceivedByte = 0 ;
+	uint8 HexString[3] = {0};
 	ReturnValueType ret = NOK;
+	sei();
 	while (1)
 	{
-		UART_SendChar('A');
-		if (UART_Receive(&UARTData) == OK)
-		{
-			UART_SendChar(UARTData);
-			LCD_Data(UARTData);
-		}
+		LCD_Postion(1,1);
+		#if (SPIMODE == MASTER)
+		SPI_SingleSendReceive(SPI_SendByte,&SPI_ReceivedByte);
+		U8HEX2String(SPI_ReceivedByte,HexString);
+		#endif
+		
+		#if (SPIMODE == SLAVE)
+		U8HEX2String(SPI_Slave_DataReceived,HexString);
+		
+		#endif
+		LCD_DataString(HexString);
+		_delay_ms(500);
 	}
 }
