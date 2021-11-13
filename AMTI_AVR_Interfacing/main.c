@@ -12,50 +12,23 @@
 #include "Bitwise.h"
 #include "LCD.h"
 #include "StringHandler.h"
-volatile uint16 Period = 0;
-volatile uint8 MeasurmentCount = 0 ;
+#include "UART.h"
+#include "PushButton.h"
 
 int main(void)
 {
+	PushButton_Init();
 	LCD_Init();
-	Dio_PinSetDirection(D,6,PinInput);
-	//Dio_PinPullupState(D,6,Active);
-	 uint8 DataString[6] = {0} ;
-	 ClearBit(TCCR1A,WGM10);
-	 ClearBit(TCCR1A,WGM11);
-	 ClearBit(TCCR1B,WGM12);
-	 ClearBit(TCCR1B,WGM13);
-	 	 
-	 SetBit(TCCR1B,CS10);
-	 ClearBit(TCCR1B,CS11);
-	 SetBit(TCCR1B,CS12);
-	 
-	 SetBit(TCCR1B,ICES1); // Detect Rising edge
-	 SetBit(TIMSK,TICIE1);
-	
-	sei();
+	UART_Init();
+	uint8 UARTData = 0 ;
+	ReturnValueType ret = NOK;
 	while (1)
 	{
-			if (MeasurmentCount %2 == 0)
-			{
-				U16Decimal2String(Period,DataString);
-				LCD_Postion(1,1);
-				LCD_DataString(DataString);
-			}
+		UART_SendChar('A');
+		if (UART_Receive(&UARTData) == OK)
+		{
+			UART_SendChar(UARTData);
+			LCD_Data(UARTData);
+		}
 	}
-}
-ISR(TIMER1_CAPT_vect)
-{
-	if (MeasurmentCount%2 == 0)
-	{
-		Period = ICR1;
-		
-	}
-	else
-	{
-		Period = ICR1 - Period;
-		
-	}
-	ToggleBit(TCCR1B,ICES1);
-	MeasurmentCount++;
 }
