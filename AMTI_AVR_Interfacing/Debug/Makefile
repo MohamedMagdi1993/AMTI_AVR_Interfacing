@@ -39,6 +39,7 @@ SUBDIRS :=
 C_SRCS +=  \
 ../ADC.c \
 ../Dio.c \
+../I2C.c \
 ../ISRs.c \
 ../KeyPad.c \
 ../LCD.c \
@@ -46,6 +47,7 @@ C_SRCS +=  \
 ../main.c \
 ../PushButton.c \
 ../SevenSegement.c \
+../SPI.c \
 ../StringHandler.c \
 ../Timer0.c \
 ../Timer1.c
@@ -60,6 +62,7 @@ ASM_SRCS +=
 OBJS +=  \
 ADC.o \
 Dio.o \
+I2C.o \
 ISRs.o \
 KeyPad.o \
 LCD.o \
@@ -67,6 +70,7 @@ LED.o \
 main.o \
 PushButton.o \
 SevenSegement.o \
+SPI.o \
 StringHandler.o \
 Timer0.o \
 Timer1.o
@@ -74,6 +78,7 @@ Timer1.o
 OBJS_AS_ARGS +=  \
 ADC.o \
 Dio.o \
+I2C.o \
 ISRs.o \
 KeyPad.o \
 LCD.o \
@@ -81,6 +86,7 @@ LED.o \
 main.o \
 PushButton.o \
 SevenSegement.o \
+SPI.o \
 StringHandler.o \
 Timer0.o \
 Timer1.o
@@ -88,6 +94,7 @@ Timer1.o
 C_DEPS +=  \
 ADC.d \
 Dio.d \
+I2C.d \
 ISRs.d \
 KeyPad.d \
 LCD.d \
@@ -95,6 +102,7 @@ LED.d \
 main.d \
 PushButton.d \
 SevenSegement.d \
+SPI.d \
 StringHandler.d \
 Timer0.d \
 Timer1.d
@@ -102,6 +110,7 @@ Timer1.d
 C_DEPS_AS_ARGS +=  \
 ADC.d \
 Dio.d \
+I2C.d \
 ISRs.d \
 KeyPad.d \
 LCD.d \
@@ -109,6 +118,7 @@ LED.d \
 main.d \
 PushButton.d \
 SevenSegement.d \
+SPI.d \
 StringHandler.d \
 Timer0.d \
 Timer1.d
@@ -127,6 +137,10 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

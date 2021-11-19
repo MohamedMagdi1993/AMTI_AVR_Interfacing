@@ -133,6 +133,12 @@
     <Compile Include="Dio.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="I2C.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="I2C.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="ISRs.c">
       <SubType>compile</SubType>
     </Compile>
@@ -167,6 +173,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="SevenSegement.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SPI.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="SPI.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="STD_Types.h">

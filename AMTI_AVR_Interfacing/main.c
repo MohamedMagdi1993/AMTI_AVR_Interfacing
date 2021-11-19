@@ -12,23 +12,33 @@
 #include "Bitwise.h"
 #include "LCD.h"
 #include "StringHandler.h"
-#include "UART.h"
-#include "PushButton.h"
+#include "I2C.h"
+#define EEPROM_ADDRESS 0b1010000
 
 int main(void)
 {
-	PushButton_Init();
+	uint8 ReadValue = 0xAA ;
+	uint8 ReadValueString[3]={0};
 	LCD_Init();
-	UART_Init();
-	uint8 UARTData = 0 ;
-	ReturnValueType ret = NOK;
+	I2C_Init();
+	I2C_Start();
+	I2C_Write((EEPROM_ADDRESS<<1)|0);
+	I2C_Write(0x00);
+	I2C_Write(0x77);
+	I2C_Stop();
 	while (1)
 	{
-		UART_SendChar('A');
-		if (UART_Receive(&UARTData) == OK)
-		{
-			UART_SendChar(UARTData);
-			LCD_Data(UARTData);
-		}
+		
+		_delay_ms(1000);
+		I2C_Start();
+		I2C_Write((EEPROM_ADDRESS<<1)|0);
+		I2C_Write(0x00);
+		I2C_Start();
+		I2C_Write((EEPROM_ADDRESS<<1)|1);
+		I2C_Read(&ReadValue);
+		I2C_Stop();
+		U8HEX2String(ReadValue,ReadValueString);
+		LCD_Postion(1,1);
+		LCD_DataString(ReadValueString);
 	}
 }

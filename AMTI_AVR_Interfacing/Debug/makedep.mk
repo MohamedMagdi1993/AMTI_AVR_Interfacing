@@ -6,6 +6,8 @@ ADC.c
 
 Dio.c
 
+I2C.c
+
 ISRs.c
 
 KeyPad.c
@@ -19,6 +21,8 @@ main.c
 PushButton.c
 
 SevenSegement.c
+
+SPI.c
 
 StringHandler.c
 
