@@ -20,6 +20,8 @@ PushButton.c
 
 SevenSegement.c
 
+SPI.c
+
 StringHandler.c
 
 Timer0.c

@@ -46,6 +46,7 @@ C_SRCS +=  \
 ../main.c \
 ../PushButton.c \
 ../SevenSegement.c \
+../SPI.c \
 ../StringHandler.c \
 ../Timer0.c \
 ../Timer1.c
@@ -67,6 +68,7 @@ LED.o \
 main.o \
 PushButton.o \
 SevenSegement.o \
+SPI.o \
 StringHandler.o \
 Timer0.o \
 Timer1.o
@@ -81,6 +83,7 @@ LED.o \
 main.o \
 PushButton.o \
 SevenSegement.o \
+SPI.o \
 StringHandler.o \
 Timer0.o \
 Timer1.o
@@ -95,6 +98,7 @@ LED.d \
 main.d \
 PushButton.d \
 SevenSegement.d \
+SPI.d \
 StringHandler.d \
 Timer0.d \
 Timer1.d
@@ -109,6 +113,7 @@ LED.d \
 main.d \
 PushButton.d \
 SevenSegement.d \
+SPI.d \
 StringHandler.d \
 Timer0.d \
 Timer1.d
@@ -127,6 +132,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 
