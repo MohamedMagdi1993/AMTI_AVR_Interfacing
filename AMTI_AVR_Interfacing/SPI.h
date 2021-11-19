@@ -16,6 +16,7 @@
 #define SCK  PINB7
 #define MASTER 1
 #define SLAVE 0
+#define Invalid -1
 #define SPIMODE SLAVE
 
 

@@ -23,18 +23,20 @@ ReturnValueType SPI_Init(void)
 	Dio_PinSetDirection(B,SCK,PinOutput);
 	Dio_PinSetDirection(B,SS,PinOutput);
 	Dio_PinWrite(B,SS,PinHigh);
-	SPCR = (1<<SPE) | (1<<MSTR) | (SPR0);
+	SPCR = (1<<SPE) | (1<<MSTR) | (1<<SPR0);
 	#endif
+	
 	#if ((SPIMODE == SLAVE))
 	Dio_PinSetDirection(B,MOSI,PinInput);
 	Dio_PinSetDirection(B,MISO,PinOutput);
 	Dio_PinSetDirection(B,SCK,PinInput);
 	Dio_PinSetDirection(B,SS,PinInput);
-	//Dio_PinPullupState(B,SS,Active);
-	SPCR = (1<<SPE) | (1<<SPIE) ;
+	Dio_PinPullupState(B,SS,Active);
+	SPCR = (1<<SPE) ;
 	ClearBit (SPCR,MSTR);
 	SPDR = 0x00;
 	#endif
+
 	return OK;
 	
 }
@@ -46,7 +48,6 @@ ReturnValueType SPI_SingleSendReceive(uint8 U8SendData,uint8* ReceivedData)
 	while (!GetBit(SPSR,SPIF));
 	*ReceivedData=SPDR ;
 	Dio_PinWrite(B,SS,PinHigh);
-	
 	return OK;
 }
 
