@@ -133,6 +133,12 @@
     <Compile Include="Dio.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="I2C.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="I2C.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="ISRs.c">
       <SubType>compile</SubType>
     </Compile>

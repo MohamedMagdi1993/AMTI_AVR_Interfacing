@@ -6,6 +6,8 @@ ADC.c
 
 Dio.c
 
+I2C.c
+
 ISRs.c
 
 KeyPad.c

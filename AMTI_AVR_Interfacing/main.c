@@ -12,36 +12,33 @@
 #include "Bitwise.h"
 #include "LCD.h"
 #include "StringHandler.h"
-#include "UART.h"
-#include "PushButton.h"
-#include "SPI.h"
+#include "I2C.h"
+#define EEPROM_ADDRESS 0b1010000
 
-extern uint8 SPI_Slave_DataReceived; 
-extern uint8 SPI_Slave_DataSend;
 int main(void)
 {
-	
+	uint8 ReadValue = 0xAA ;
+	uint8 ReadValueString[3]={0};
 	LCD_Init();
-	SPI_Init();
-	
-	uint8 SPI_SendByte = 0x55 ;
-	uint8 SPI_ReceivedByte = 0 ;
-	uint8 HexString[3] = {0};
-	ReturnValueType ret = NOK;
-	sei();
+	I2C_Init();
+	I2C_Start();
+	I2C_Write((EEPROM_ADDRESS<<1)|0);
+	I2C_Write(0x00);
+	I2C_Write(0x77);
+	I2C_Stop();
 	while (1)
 	{
+		
+		_delay_ms(1000);
+		I2C_Start();
+		I2C_Write((EEPROM_ADDRESS<<1)|0);
+		I2C_Write(0x00);
+		I2C_Start();
+		I2C_Write((EEPROM_ADDRESS<<1)|1);
+		I2C_Read(&ReadValue);
+		I2C_Stop();
+		U8HEX2String(ReadValue,ReadValueString);
 		LCD_Postion(1,1);
-		#if (SPIMODE == MASTER)
-		SPI_SingleSendReceive(SPI_SendByte,&SPI_ReceivedByte);
-		U8HEX2String(SPI_ReceivedByte,HexString);
-		#endif
-		
-		#if (SPIMODE == SLAVE)
-		U8HEX2String(SPI_Slave_DataReceived,HexString);
-		
-		#endif
-		LCD_DataString(HexString);
-		_delay_ms(500);
+		LCD_DataString(ReadValueString);
 	}
 }
