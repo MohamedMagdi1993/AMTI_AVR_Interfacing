@@ -15,7 +15,7 @@ main.d main.o: .././main.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\math.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  .././Dio.h .././STD_Types.h .././Bitwise.h .././LCD.h \
- .././StringHandler.h .././I2C.h
+ .././StringHandler.h .././UART.h .././PushButton.h .././SPI.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -57,4 +57,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 
 .././StringHandler.h:
 
-.././I2C.h:
+.././UART.h:
+
+.././PushButton.h:
+
+.././SPI.h:

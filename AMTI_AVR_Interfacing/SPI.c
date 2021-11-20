@@ -12,7 +12,7 @@
 #if (SPIMODE == SLAVE)
 #include <avr/interrupt.h>
 	uint8 SPI_Slave_DataReceived = 0 ;
-	uint8 SPI_Slave_DataSend = 0x5A ;
+	uint8 SPI_Slave_DataSend = 0xBB ;
 #endif
 
 ReturnValueType SPI_Init(void)
@@ -32,8 +32,7 @@ ReturnValueType SPI_Init(void)
 	Dio_PinSetDirection(B,SCK,PinInput);
 	Dio_PinSetDirection(B,SS,PinInput);
 	Dio_PinPullupState(B,SS,Active);
-	SPCR = (1<<SPE) ;
-	ClearBit (SPCR,MSTR);
+	SPCR = (1<<SPE) |(1<<SPIE) ;
 	SPDR = 0x00;
 	#endif
 
