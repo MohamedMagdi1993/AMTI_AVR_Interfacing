@@ -12,33 +12,36 @@
 #include "Bitwise.h"
 #include "LCD.h"
 #include "StringHandler.h"
-#include "I2C.h"
-#define EEPROM_ADDRESS 0b1010000
+#include "EEPROM.h"
 
 int main(void)
 {
-	uint8 ReadValue = 0xAA ;
+	uint8 ReadValue = 0x00 ;
 	uint8 ReadValueString[3]={0};
 	LCD_Init();
-	I2C_Init();
-	I2C_Start();
-	I2C_Write((EEPROM_ADDRESS<<1)|0);
-	I2C_Write(0x00);
-	I2C_Write(0x77);
-	I2C_Stop();
+	EEPROM_write(0x00,'H');
+	EEPROM_write(0x01,'E');
+	EEPROM_write(0x02,'L');
+	EEPROM_write(0x03,'L');
+	EEPROM_write(0x04,'O');
+	LCD_Postion(1,1);
+	EEPROM_read(0x00,&ReadValue);
+	_delay_ms(100);
+	LCD_Data(ReadValue);
+	EEPROM_read(0x01,&ReadValue);
+	_delay_ms(100);
+	LCD_Data(ReadValue);
+	EEPROM_read(0x02,&ReadValue);
+	_delay_ms(100);
+	LCD_Data(ReadValue);
+	EEPROM_read(0x03,&ReadValue);
+	_delay_ms(100);
+	LCD_Data(ReadValue);
+	EEPROM_read(0x04,&ReadValue);
+	_delay_ms(100);
+	LCD_Data(ReadValue);
 	while (1)
 	{
 		
-		_delay_ms(1000);
-		I2C_Start();
-		I2C_Write((EEPROM_ADDRESS<<1)|0);
-		I2C_Write(0x00);
-		I2C_Start();
-		I2C_Write((EEPROM_ADDRESS<<1)|1);
-		I2C_Read(&ReadValue);
-		I2C_Stop();
-		U8HEX2String(ReadValue,ReadValueString);
-		LCD_Postion(1,1);
-		LCD_DataString(ReadValueString);
 	}
 }

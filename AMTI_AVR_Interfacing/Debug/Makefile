@@ -39,6 +39,7 @@ SUBDIRS :=
 C_SRCS +=  \
 ../ADC.c \
 ../Dio.c \
+../EEPROM.c \
 ../I2C.c \
 ../ISRs.c \
 ../KeyPad.c \
@@ -62,6 +63,7 @@ ASM_SRCS +=
 OBJS +=  \
 ADC.o \
 Dio.o \
+EEPROM.o \
 I2C.o \
 ISRs.o \
 KeyPad.o \
@@ -78,6 +80,7 @@ Timer1.o
 OBJS_AS_ARGS +=  \
 ADC.o \
 Dio.o \
+EEPROM.o \
 I2C.o \
 ISRs.o \
 KeyPad.o \
@@ -94,6 +97,7 @@ Timer1.o
 C_DEPS +=  \
 ADC.d \
 Dio.d \
+EEPROM.d \
 I2C.d \
 ISRs.d \
 KeyPad.d \
@@ -110,6 +114,7 @@ Timer1.d
 C_DEPS_AS_ARGS +=  \
 ADC.d \
 Dio.d \
+EEPROM.d \
 I2C.d \
 ISRs.d \
 KeyPad.d \
@@ -137,6 +142,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

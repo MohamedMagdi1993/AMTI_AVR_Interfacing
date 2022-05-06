@@ -6,6 +6,8 @@ ADC.c
 
 Dio.c
 
+EEPROM.c
+
 I2C.c
 
 ISRs.c
