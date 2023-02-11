@@ -23,7 +23,7 @@
 #include "Bitwise.h"
 #include "Dio.h"
 void Adc_Init(void) ;
-void Adc_ChannelInit(uint8 ADC_Channel);
+void Adc_ChannelSelect(uint8 ADC_Channel);
 void Adc_ReadChannel(uint8 ADC_Channel , uint16* Adc_Data) ;
 
 #endif /* ADC_H_ */
